@@ -1,6 +1,10 @@
 'use strict';
 
 const fs = require('fs');
+const Mustache = require('mustache');
+const axios = require('axios').default;
+const restaurantsApiRoot = process.env.restaurants_api;
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 var html;
 
@@ -11,9 +15,16 @@ function loadHtml() {
   return html;
 }
 
+function getRestaurants() {
+  return axios.get(restaurantsApiRoot).then(response => response.data);
+}
+
 module.exports.handler = async (event) => {
   try {
-    let html = loadHtml();
+    const template = loadHtml();
+    const restaurants = await getRestaurants();
+    const dayOfWeek = days[new Date().getDay()];
+    const html = Mustache.render(template, { dayOfWeek, restaurants });
 
     const response = {
       statusCode: 200,

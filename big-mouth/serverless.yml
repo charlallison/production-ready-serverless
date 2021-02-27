@@ -24,6 +24,8 @@ functions:
       - httpApi:
           path: /
           method: get
+    environment:
+      restaurants_api: https://hymsvbvya3.execute-api.ca-central-1.amazonaws.com/restaurants
 
   get-restaurants:
     handler: functions/getRestaurants.handler
