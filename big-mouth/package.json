@@ -12,6 +12,7 @@
     "fs": "0.0.1-security"
   },
   "devDependencies": {
-    "aws-sdk": "^2.853.0"
+    "aws-sdk": "^2.853.0",
+    "serverless-pseudo-parameters": "^2.5.0"
   }
 }

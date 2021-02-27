@@ -2,13 +2,18 @@ service: big-mouth
 
 frameworkVersion: "2"
 
+plugins:
+  - serverless-pseudo-parameters
+
 provider:
   name: aws
   runtime: nodejs12.x
   profile: serverless-admin
   lambdaHashingVersion: 20201221
-
-  # you can overwrite defaults here
+  iamRoleStatements:
+    - Effect: Allow
+      Action: dynamodb:scan
+      Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/restaurants
   stage: dev
   region: ca-central-1
 
