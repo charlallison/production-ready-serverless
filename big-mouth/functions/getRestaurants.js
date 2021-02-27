@@ -17,7 +17,7 @@ getRestaurants.getAll = async (count) => {
         
         dynamodb.scan(req, (err, data) => {
             if(err) reject(err);
-            else resolve(data);
+            else resolve(data.Items);
         });
     });
 };
