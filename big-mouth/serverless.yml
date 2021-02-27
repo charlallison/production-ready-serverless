@@ -18,3 +18,10 @@ functions:
       - httpApi:
           path: /
           method: get
+
+  get-restaurants:
+    handler: functions/get-restaurants.handler
+    events:
+      - httpApi:
+          path: /restaurants/
+          method: get
