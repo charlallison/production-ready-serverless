@@ -5,6 +5,7 @@ frameworkVersion: "2"
 provider:
   name: aws
   runtime: nodejs12.x
+  profile: serverless-admin
   lambdaHashingVersion: 20201221
 
   # you can overwrite defaults here
@@ -20,8 +21,10 @@ functions:
           method: get
 
   get-restaurants:
-    handler: functions/get-restaurants.handler
+    handler: functions/getRestaurants.handler
     events:
       - httpApi:
-          path: /restaurants/
+          path: /restaurants
           method: get
+    environment:
+      restaurants_table: restaurants
